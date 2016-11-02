@@ -8,25 +8,26 @@ import React, { Component } from 'react';
 import GesturePwdCom from "./GesturePwdCom";
 import GesturePwdFootCom from "./GesturePwdFootCom";
 
+import LinearGradient from 'react-native-linear-gradient';
+
 export default class GesturePwd extends Component {
   constructor(props) {
       super(props);
   }
-
     
   render() {
-    return (
-       <View style={styles.container}>
-         <GesturePwdCom />
-         <GesturePwdFootCom />
-       </View>
+    return (    
+      <LinearGradient colors={['#2fd56a', '#22c9dd']} style={styles.linearGradient}>
+        <GesturePwdCom />
+        <GesturePwdFootCom />
+      </LinearGradient>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  linearGradient: {
     flex: 1,
-    backgroundColor: "#eeeeee",
   },
+
 });

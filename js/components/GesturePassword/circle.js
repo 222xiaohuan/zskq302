@@ -43,7 +43,7 @@ Circle.defaultProps = {
 const styles = StyleSheet.create({
     outer: {
         position: 'absolute',
-        borderColor: '#8E91A8',
+        borderColor: '#ffffff',
         borderWidth: 1,
         alignItems: 'center',
         justifyContent: 'center'

@@ -71,6 +71,10 @@ export default class GesturePwdCom extends Component {
             innerCircle={true}
             outerCircle={true}
             children={this.renderHead()}
+            textStyle={{ color: '#ffffff' }}
+            rightColor='#ffffff'
+            wrongColor='#ff0000'
+            interval={1000}
         />
     );
   }

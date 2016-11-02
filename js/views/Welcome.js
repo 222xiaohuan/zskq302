@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, { Component } from 'react';
-import GesturePwd from './GesturePwd/GesturePwd';
+import GesturePwd from './GesturePwd';
 import Fingerprint from './Fingerprint';
 import Pro from './Pro';
 import WaterMaskDemo from './WaterMaskDemo';

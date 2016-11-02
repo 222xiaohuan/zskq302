@@ -291,7 +291,7 @@ GesturePassword.propTypes = {
 
 GesturePassword.defaultProps = {
     message: '',
-    rightColor: '#5FA8FC',
+    rightColor: '#8E91A8',
     wrongColor: '#D93609',
     status: 'normal',
     interval: 0,
@@ -302,7 +302,7 @@ GesturePassword.defaultProps = {
 
 const styles = StyleSheet.create({
     frame: {
-        backgroundColor: '#292B38'
+        backgroundColor: 'transparent'
     },
     board: {
         position: 'absolute',

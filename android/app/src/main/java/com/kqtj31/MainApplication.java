@@ -3,6 +3,7 @@ package com.kqtj31;
 import android.app.Application;
 import android.util.Log;
 
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -25,7 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-              new FingerprintPackage()
+              new FingerprintPackage(),
+              new LinearGradientPackage()
       );
     }
   };
