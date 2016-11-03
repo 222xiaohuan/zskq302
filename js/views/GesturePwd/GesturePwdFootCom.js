@@ -6,10 +6,11 @@ import {
 import React, {Component} from 'React';
 
 export default class GesturePwdFootCom extends Component{
+
   render(){
     return(
       <View style={styles.container}>
-        <Text style={styles.btnText}>修改手势密码</Text>
+        <Text style={styles.btnText} onPress={this.props.updateGesturePwd.bind(this) }>修改手势密码</Text>
         <Text style={styles.btnText}>忘记手势密码</Text>
       </View>
     );
