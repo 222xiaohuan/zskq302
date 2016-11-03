@@ -14,29 +14,25 @@ import Consts, { gesturePwdOperation } from '../../common/Consts';
 export default class GesturePwd extends Component {
   constructor(props) {
       super(props);
-      this.state = {
-        message: '',
-      }
+      this.updateMsg = '请先输入原密码';
   }
     
   componentDidMount(){
     Consts.gesturePwdSelectedOperation = gesturePwdOperation.unlock;
   }
 
-  updateGesturePwd(){
+  updateGesturePwdCB =()=>{
     Consts.gesturePwdSelectedOperation = gesturePwdOperation.update;
     console.log('------回调执行了', Consts.gesturePwdSelectedOperation);
 
-    this.setState({
-        message: '请先输入密码',
-    });
+    this.pwdCom.updateMsg(this.updateMsg);
   }
 
   render() {
     return (    
       <LinearGradient colors={['#2fd56a', '#22c9dd']} style={styles.linearGradient}>
-        <GesturePwdCom parentMsg = {this.state.message} />
-        <GesturePwdFootCom updateGesturePwd = {this.updateGesturePwd} />
+        <GesturePwdCom ref={pwd => this.pwdCom = pwd} />
+        <GesturePwdFootCom updateGesturePwdCB = {this.updateGesturePwdCB} />
       </LinearGradient>
     );
   }

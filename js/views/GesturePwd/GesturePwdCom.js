@@ -9,7 +9,7 @@ import PasswordGesture from '../../components/GesturePassword';
 
 import GesturePwdHeadCom from './GesturePwdHeadCom';
 import Nav from '../../components/Nav';
-import Consts from '../../common/Consts';
+import Consts, { gesturePwdOperation } from '../../common/Consts';
 
 export default class GesturePwdCom extends Component {
   constructor(props) {
@@ -22,35 +22,37 @@ export default class GesturePwdCom extends Component {
   }
 
   componentDidMount(){
-      this.Password1 = '123';
+    this.Password1 = '123';
   }
 
     onEnd(password) {
 
-        Consts.gesturePwdDrawTimes <= 4 ? Consts.gesturePwdDrawTimes += 1 : Consts.gesturePwdDrawTimes;
+        if(Consts.gesturePwdSelectedOperation == gesturePwdOperation.unlock){
+            Consts.gesturePwdDrawTimes <= 4 ? Consts.gesturePwdDrawTimes += 1 : Consts.gesturePwdDrawTimes;
 
-        console.log('------', Consts.gesturePwdDrawTimes);
-        if (password == this.Password1 && Consts.gesturePwdDrawTimes < 4) {
-            this.setState({
-                status: 'right',
-                message: '密码正确'
-            });
-            Consts.gesturePwdDrawTimes = 0;
-            // your codes to close this view
-        } else {
-            if(Consts.gesturePwdDrawTimes > 4){
+            if (password == this.Password1 && Consts.gesturePwdDrawTimes < 4) {
+                this.setState({
+                    status: 'right',
+                    message: '密码正确'
+                });
+                Consts.gesturePwdDrawTimes = 0;
+                // your codes to close this view
+            } else {
+                if(Consts.gesturePwdDrawTimes > 4){
+                    this.setState({
+                        status: 'wrong',
+                        message: '最大允许尝试四次，请提交异常申诉'
+                    });
+                    return;
+                }
+                let remainTimes = 4 - Consts.gesturePwdDrawTimes;
                 this.setState({
                     status: 'wrong',
-                    message: '最大允许尝试四次，请提交异常申诉'
+                    message: `密码错误 还可尝试${remainTimes}次`,
                 });
-                return;
             }
-            let remainTimes = 4 - Consts.gesturePwdDrawTimes;
-            this.setState({
-                status: 'wrong',
-                message: `密码错误 还可尝试${remainTimes}次`,
-            });
         }
+
     }
 
     onStart() {
@@ -74,6 +76,16 @@ export default class GesturePwdCom extends Component {
             <GesturePwdHeadCom/>
         </View>
         );
+    }
+
+    updateMsg(parentMsg){
+        console.log('------', Consts.gesturePwdSelectedOperation);
+        if(Consts.gesturePwdSelectedOperation == gesturePwdOperation.update){
+            this.setState({
+                status: 'normal',
+                message: parentMsg,
+            });
+        }
     }
 
   render() {

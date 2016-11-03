@@ -1,7 +1,8 @@
 module.exports = {
   gesturePwdOperation: {
     'unlock': 'unlock',
-    'update': 'update',
+    'updateOrigin': 'updateOrigin',
+    'updateConfirm': 'updateConfirm',
     'reset': 'reset',
   },
   gesturePwdSelectedOperation: null,
