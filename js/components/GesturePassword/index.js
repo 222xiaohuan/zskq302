@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import Line from './line'
 import Circle from './circle'
+import * as Animatable from 'react-native-animatable';
 
 // const Width = Dimensions.get('window').width
 // const Height = Dimensions.get('window').height
@@ -71,6 +72,20 @@ export default class GesturePassword extends Component {
         })
     }
 
+    renderMessage(){
+        let color = this.props.status === 'wrong' ? this.props.wrongColor : this.props.rightColor;
+        return (
+            this.props.status == 'wrong' ?
+                <Animatable.Text animation="shake" iterationCount={1} direction="alternate" style={[styles.msgText, this.props.textStyle, {color: color}]}>
+                    {this.state.message || this.props.message}
+                </Animatable.Text>
+            :
+                <Text style={[styles.msgText, this.props.textStyle, {color: color}]}>
+                        {this.state.message || this.props.message}
+                </Text>
+        );
+    }
+
     render() {
         let color = this.props.status === 'wrong' ? this.props.wrongColor : this.props.rightColor;
 
@@ -79,10 +94,9 @@ export default class GesturePassword extends Component {
                 {this.props.children}
 
                 <View style={styles.message}>
-                    <Text style={[styles.msgText, this.props.textStyle, {color: color}]}>
-                        {this.state.message || this.props.message}
-                    </Text>
+                    {this.renderMessage()}
                 </View>
+
                 <View style={styles.board} {...this._panResponder.panHandlers}>
                     {this.renderCircles()}
                     {this.renderLines()}

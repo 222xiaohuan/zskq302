@@ -14,7 +14,6 @@ import Consts, { gesturePwdOperation } from '../../common/Consts';
 export default class GesturePwd extends Component {
   constructor(props) {
       super(props);
-      this.updateMsg = '请先输入原密码';
   }
     
   componentDidMount(){
@@ -22,10 +21,10 @@ export default class GesturePwd extends Component {
   }
 
   updateGesturePwdCB =()=>{
-    Consts.gesturePwdSelectedOperation = gesturePwdOperation.update;
+    Consts.gesturePwdSelectedOperation = gesturePwdOperation.updateOrigin;
     console.log('------回调执行了', Consts.gesturePwdSelectedOperation);
 
-    this.pwdCom.updateMsg(this.updateMsg);
+    this.pwdCom.updateOperation();
   }
 
   render() {
