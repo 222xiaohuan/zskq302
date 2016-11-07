@@ -6,14 +6,32 @@ import {
 } from 'react-native';
 
 import React, { Component } from 'react';
+import Welcome from './Welcome';
 
 export default class ResetStack2 extends Component{
 
+  pushToHome(){
+    this.props.navigator.push({
+      component: Welcome,
+    });
+  }
+
+  resetToHome(){
+    this.props.navigator.resetTo({
+      component: Welcome,
+    });
+  }
 
   render(){
     return (
       <View>
-          <Text style={styles.textTitle}> Stack 2</Text>
+        <TouchableOpacity onPress={() => this.pushToHome()}>
+          <Text style={styles.textTitle}> Push to welcome page</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => this.resetToHome()}>
+          <Text style={styles.textTitle}> reset to welcome page</Text>
+        </TouchableOpacity>
       </View>
     );
   }
