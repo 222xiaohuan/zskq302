@@ -8,11 +8,25 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   Navigator,
+  BackAndroid,
 } from 'react-native';
 
 import Welcome from './js/views/Welcome';
 
+let nav = null;
+
 class KQTJ31 extends Component {
+
+  componentDidMount(){
+    BackAndroid.addEventListener('hardwareBackPress', function(){
+      if(nav && nav.getCurrentRoutes().length > 1){
+        nav.pop();
+        return true;
+      }
+      return false;
+    });
+  }
+
 
   configureScene(route, routeStack) {
     Navigator.SceneConfigs.FloatFromRight.gestures = null;
@@ -20,6 +34,7 @@ class KQTJ31 extends Component {
   }
 
   renderScene(route, navigator){
+    nav = navigator;
     return <route.component navigator={navigator} {...route} {...route.passProps} />
   }
 
